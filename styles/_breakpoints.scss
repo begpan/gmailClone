@@ -1,0 +1,8 @@
+// mobil cihazlarda devreye girecek mixin
+ 
+@mixin sm {
+    @media(max-width: 768px){
+        @content
+
+    }
+}

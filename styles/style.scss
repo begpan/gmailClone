@@ -65,192 +65,274 @@ header {
   }
 }
 
+section {
+  display: flex;
+  gap: 20px;
+}
 
-section{
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 40px;
+  @include sm {
+    padding: 0;
+    padding-left: 6px;
+  }
+
+  .create {
+    background: $light-blue;
+    border-radius: 15px;
+    padding: 10px;
     display: flex;
     gap: 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    &:hover {
+      box-shadow: 2px 2px 10px gray;
+    }
+  }
 
-}
+  ul {
+    display: grid;
 
-nav{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 40px;
-    @include sm{
-        padding:0;
-        padding-left: 6px;
-    } 
+    gap: 16px;
 
-    .create{
-        background: $light-blue;
-        border-radius: 15px;
-        padding: 10px;
+    li {
+      list-style: none;
+      label {
         display: flex;
-        gap: 20px;
+        gap: 12px;
+        margin-left: 4px;
+        border-radius: 0 15px 15px 0;
+        padding: 8px;
         cursor: pointer;
-        transition: box-shadow 0.3s;
-        &:hover{
-            box-shadow: 2px 2px 10px gray;
+        &:hover {
+          background: $light_blue;
         }
+      }
+
+      input {
+        display: none;
+      }
+
+      // eğerr içinde inputu tikle olan li elemanı varsa stilleri uygular
+      &:has(input:checked) label {
+        background: $light_blue;
+      }
     }
+  }
 
-    ul{
-        display: grid;
-        gap: 16px;
-
-        li{
-            padding: 8px;
-            margin-left: 4px;
-            display: flex;
-            gap: 12px;
-            border-radius: 0 15px 15px 0;
-            &:hover{
-                background: $light-blue;
-            }
-        }
-
-    }
-
-    .bottom{
-        margin-left: 14px;
-
-    }
-
-
+  .bottom {
+    margin-left: 14px;
+  }
 }
 // js ile eklediğimiz hide aktifse bütün yazıları kaldır. nav dısına yazılır
-.hide{
-    span{
-        display: none;
-    }
+.hide {
+  span {
+    display: none;
+  }
 }
 
-main{
-    flex-grow: 1;
+main {
+  flex-grow: 1;
 
-    @include sm{
-        margin-right: 20px
+  @include sm {
+    margin-right: 20px;
+  }
+
+  .top {
+    @extend .between;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    padding: 8px 16px;
+
+    i {
+      @extend .icon;
     }
 
-    .top{
-        @extend .between;
-        background-color: white;
-        border-radius: 10px 10px 0 0;
-        padding: 8px 16px;
-
-        i{
-            @extend .icon
-        }
-
-        .left , .right{
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
+    .left,
+    .right {
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
-    .mails{
-        background: rgb(226, 226, 226);
-        height: 80vh;
-    }
-   
+  }
+  .mails {
+    background: rgb(226, 226, 226);
+    height: 80vh;
+  }
 }
 
-.mail{
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    column-gap: 5px;
-    font-size: 16px;
-    padding: 10px;
-    border-bottom: 1px solid white;
-    cursor: pointer;
+.mail {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 5px;
+  font-size: 16px;
+  padding: 10px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
 
+  &:hover {
+    box-shadow: 0 0 30px rgba(128, 128, 128, 0.4);
+  }
+  .info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    overflow: hidden;
 
-
-
-    &:hover{
-        box-shadow: 0 0 30px rgba(128, 128, 128, 0.4);
+    .title {
+      font-weight: bold;
     }
-        .info{
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .content{
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-        
+    .desc {
+      overflow: hidden; // taşan yazıları gizliyor
+      white-space: nowrap; //tek satırda
+      text-overflow: ellipsis; // taşan yazılara ... koyuyor
+    }
+  }
+  .time {
+    text-align: end;
+    white-space: nowrap;
+  }
 
+  // sil butonu mail hoverlanınca göster
+  #button-wrapper {
+    display: none;
+  }
 
-            .title{
-                font-weight: bold;
-                
-            }
-            .desc{
-                overflow: hidden; // taşan yazıları gizliyor
-                white-space: nowrap; //tek satırda
-                text-overflow: ellipsis; // taşan yazılara ... koyuyor
-            }
-
-           
-        }
-        .time{
-            text-align: end;
-            white-space: nowrap;
-        }
-
-        // sil butonu mail hoverlanınca göster
-
-        button{
-            display: none;
-            border: none;
-            background: transparent;
-            transition: all .3s;
-            border-radius: 5px;
-            padding: 4px;
-            &:hover{
-                background: rgb(180, 180, 180);
-            }
-
-        }
-        &:hover >button {
-            display: block;
-        }
-        &:hover >.time {
-            display: none;
-        }
+  button {
+    width: 40%;
+    border: none;
+    background: transparent;
+    transition: all 0.3s;
+    border-radius: 5px;
+    padding: 4px;
+    &:hover {
+      background: rgb(180, 180, 180);
+    }
+  }
+  &:hover > #button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &:hover > .time {
+    display: none;
+  }
 }
 
 // sağ taraf
 aside {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 20px;
-    @include sm{
-        padding:12px
-    } 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 20px;
+  @include sm {
+    padding: 12px;
+  }
 
-    span{
-        background-color: $dark-gray;
-        height: 2px;
-        width: 100%;
+  span {
+    background-color: $dark-gray;
+    height: 2px;
+    width: 100%;
+  }
+
+  img {
+    @extend .icon;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    object-fit: contain;
+  }
+
+  @include sm {
+    display: none;
+  }
+}
+
+// modal scss
+
+.modal-wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+}
+
+.modal {
+  background-color: white;
+  width: 80%;
+  max-width: 700px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+
+  input {
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    margin: 0 6px;
+    outline: none;
+  }
+
+  textarea {
+    margin: 0 6px;
+
+    height: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: "Roboto";
+    padding-top: 10px;
+  }
+
+  #send {
+    width: 140px;
+    border: none;
+    padding: 14px;
+    border-radius: 50px;
+    background: #1b61d1;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background: #103a7e;
     }
+  }
+}
 
-    img{
-        @extend .icon;
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        padding: 3px;
+.modal .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgb(190, 190, 190);
+  border-radius: 10px 10px 0 0;
+
+  button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background: gray;
+      color: white;
     }
-
-    @include sm{
-        display: none;
-    }
-
+  }
 }

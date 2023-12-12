@@ -102,13 +102,23 @@ nav ul {
   gap: 16px;
 }
 nav ul li {
-  padding: 8px;
-  margin-left: 4px;
+  list-style: none;
+}
+nav ul li label {
   display: flex;
   gap: 12px;
+  margin-left: 4px;
   border-radius: 0 15px 15px 0;
+  padding: 8px;
+  cursor: pointer;
 }
-nav ul li:hover {
+nav ul li label:hover {
+  background: #d9ebff;
+}
+nav ul li input {
+  display: none;
+}
+nav ul li:has(input:checked) label {
   background: #d9ebff;
 }
 nav .bottom {
@@ -132,7 +142,8 @@ main .top {
   border-radius: 10px 10px 0 0;
   padding: 8px 16px;
 }
-main .top .left, main .top .right {
+main .top .left,
+main .top .right {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -144,7 +155,7 @@ main .mails {
 
 .mail {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   -moz-column-gap: 5px;
        column-gap: 5px;
   font-size: 16px;
@@ -179,8 +190,11 @@ main .mails {
   text-align: end;
   white-space: nowrap;
 }
-.mail button {
+.mail #button-wrapper {
   display: none;
+}
+.mail button {
+  width: 40%;
   border: none;
   background: transparent;
   transition: all 0.3s;
@@ -190,8 +204,9 @@ main .mails {
 .mail button:hover {
   background: rgb(180, 180, 180);
 }
-.mail:hover > button {
-  display: block;
+.mail:hover > #button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 .mail:hover > .time {
   display: none;
@@ -219,9 +234,81 @@ aside img {
   width: 30px;
   height: 30px;
   padding: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 @media (max-width: 768px) {
   aside {
     display: none;
   }
+}
+
+.modal-wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+}
+
+.modal {
+  background-color: white;
+  width: 80%;
+  max-width: 700px;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.modal input {
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  margin: 0 6px;
+  outline: none;
+}
+.modal textarea {
+  margin: 0 6px;
+  height: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: "Roboto";
+  padding-top: 10px;
+}
+.modal #send {
+  width: 140px;
+  border: none;
+  padding: 14px;
+  border-radius: 50px;
+  background: #1b61d1;
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+}
+.modal #send:hover {
+  background: #103a7e;
+}
+
+.modal .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgb(190, 190, 190);
+  border-radius: 10px 10px 0 0;
+}
+.modal .header button {
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.modal .header button:hover {
+  background: gray;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

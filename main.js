@@ -64,7 +64,7 @@ ele.modalForm.addEventListener("submit", (e) => {
 
   // ya da if (!receiver || !title || !message) da yazılabilir
   if (receiver === "" || title === "" || message === "") {
-    alert("Lütfen bütün alanları doldurun");
+    alert("Please fill in all fields");
   } else {
     // diziye eklemek için mail objesi oluştur
 
